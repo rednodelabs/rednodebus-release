@@ -1,0 +1,7 @@
+# Copyright (c) 2020 RedNodeLabs
+
+menu "RedNodeLabs Ranging Drivers"
+
+rsource "rednoderanging/Kconfig"
+
+endmenu

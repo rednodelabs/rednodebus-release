@@ -1,0 +1,9 @@
+# Copyright (c) 2020 RedNodeLabs
+
+menu "RedNodeLabs Drivers"
+	depends on HAS_REDNODELABS_DRIVERS
+
+rsource "net/Kconfig"
+rsource "ranging/Kconfig"
+
+endmenu

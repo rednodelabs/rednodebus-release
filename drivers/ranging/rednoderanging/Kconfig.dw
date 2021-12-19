@@ -1,0 +1,32 @@
+# RedNodeLabs RedNodeRanging configuration options
+
+# Copyright (c) 2020 RedNodeLabs
+
+menuconfig REDNODERANGING_DW
+	bool "Decawave RedNodeRanging Radio Driver"
+	default y if IEEE802154_DW1000 && REDNODERANGING
+
+if REDNODERANGING_DW
+
+config REDNODERANGING_DW_DRV_NAME
+	string "Decawave RedNodeRanging Radio Driver's name"
+	default "REDNODERANGING_dw"
+	help
+	  This option sets the driver name
+
+config REDNODERANGING_DW_EVENT_STACK_SIZE
+	int "Driver's internal RedNodeRanging Event thread stack size"
+	default 800
+	help
+	  This option sets the driver's stack size for its internal Radio Event thread.
+	  The default value should be sufficient, but in case it proves to be
+	  a too little one, this option makes it easy to play with the size.
+
+config REDNODERANGING_DW_INIT_PRIO
+	int "Decawave RedNodeRanging initialization priority"
+	default 75
+	help
+	  Set the initialization priority number. Do not mess with it unless
+	  you know what you are doing.
+
+endif # REDNODERANGING_DW

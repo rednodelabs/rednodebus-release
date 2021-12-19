@@ -1,0 +1,203 @@
+# RedNodeBus driver configuration options
+
+# Copyright (c) 2020 RedNodeLabs
+
+#
+# RedNodeBus options
+#
+menuconfig REDNODEBUS
+	bool "RedNodeBus Driver"
+    depends on NET_L2_IEEE802154 || NET_L2_OPENTHREAD
+
+if REDNODEBUS
+
+config REDNODEBUS_NET_IF_NO_AUTO_START
+	bool "Disable RedNodeBus interface auto-start"
+	help
+	  This option allows user to set any configuration and/or filter before
+	  the radio becomes operational. For instance, the EUI-64 value can be
+	  configured using net_if_set_link_addr(iface, mac, 8,
+	  NET_LINK_REDNODEBUS).
+	  When all configurations are done net_if_up() has to be invoked to
+	  bring the interface up.
+
+	  This option can be useful when using OpenThread or Zigbee. If you
+	  have any doubt about this option leave it as default value.
+
+config REDNODEBUS_RAW_MODE
+	bool "Use RedNodeBus driver without the MAC stack"
+	select NET_RAW_MODE
+	help
+	  This option enables using the drivers in a so-called "raw" mode,
+	  i.e. without a MAC stack (the net L2 layer for RedNodeBus will not
+	  be built). Used only for very specific cases, such as wpan_serial
+	  and wpanusb samples.
+
+config REDNODEBUS_RDEV
+	bool
+	help
+	  PHY is a ranging-capable device (RDEV)
+
+config REDNODEBUS_VENDOR_OUI_ENABLE
+	bool "Enables setting Vendor Organizationally Unique Identifier"
+	help
+	  This option enables setting custom vendor
+	  OUI using REDNODEBUS_VENDOR_OUI. After enabling,
+	  user is obliged to set REDNODEBUS_VENDOR_OUI value,
+	  as this option has no default value.
+
+if REDNODEBUS_VENDOR_OUI_ENABLE
+
+config REDNODEBUS_VENDOR_OUI
+	int "Vendor Organizationally Unique Identifier"
+	help
+	  Custom vendor OUI, which makes 24 most-significant
+	  bits of MAC address
+
+endif # REDNODEBUS_VENDOR_OUI_ENABLE
+
+rsource "Kconfig.nrf5"
+
+menuconfig REDNODEBUS_UPIPE
+	bool "UART PIPE fake radio driver support for QEMU"
+	depends on (BOARD_QEMU_X86 || BOARD_QEMU_CORTEX_M3) && NETWORKING
+	select UART_PIPE
+
+if REDNODEBUS_UPIPE
+
+config REDNODEBUS_UPIPE_DRV_NAME
+	string "UART PIPE Driver name"
+	default "REDNODEBUS_UPIPE"
+
+config REDNODEBUS_UPIPE_HW_FILTER
+	bool "Hw Filtering"
+	default y
+	help
+	  This option assure the driver will process just frames addressed to him.
+
+config REDNODEBUS_UPIPE_RANDOM_MAC
+	bool "Random MAC address"
+	default y
+	help
+	  Generate a random MAC address dynamically.
+
+if ! REDNODEBUS_UPIPE_RANDOM_MAC
+
+config REDNODEBUS_UPIPE_MAC4
+	hex "MAC Address Byte 4"
+	default 0
+	range 0 0xff
+	help
+	  This is the byte 4 of the MAC address.
+
+config REDNODEBUS_UPIPE_MAC5
+	hex "MAC Address Byte 5"
+	default 0
+	range 0 0xff
+	help
+	  This is the byte 5 of the MAC address.
+
+config REDNODEBUS_UPIPE_MAC6
+	hex "MAC Address Byte 6"
+	default 0
+	range 0 0xff
+	help
+	  This is the byte 6 of the MAC address.
+
+config REDNODEBUS_UPIPE_MAC7
+	hex "MAC Address Byte 7"
+	default 0
+	range 0 0xff
+	help
+	  This is the byte 7 of the MAC address.
+
+endif # REDNODEBUS_UPIPE_RANDOM_MAC
+
+endif # REDNODEBUS_UPIPE
+
+config REDNODEBUS_PROTOCOL_VERSION
+	int "RedNodeBus protocol version"
+	default 0
+	help
+      The version of the bus protocol. Only the 3-less significant bits are used.
+
+config REDNODEBUS_MODE
+	int "RedNodeBus mode"
+	default 0
+	help
+      The mode of the bus protocol. Only the 3-less significant bits are used.
+
+config REDNODEBUS_RANGING_MAJOR_VERSION
+	int "RedNodeBus Ranging major version"
+	default 0
+	help
+      The major version of the ranging protocol. Only the 4-less significant bits are used.
+
+config REDNODEBUS_RANGING_MINOR_VERSION
+	int "RedNodeBus Ranging minor version"
+	default 0
+	help
+      The minor version of the ranging protocol. Only the 4-less significant bits are used.
+
+config REDNODEBUS_CHANNEL_MASK_SWITCH_ORDER
+	bool "Move the order of the channels within the mask in each superframe"
+	default y
+	help
+      The order of the channels will change based on the superframe number
+
+config REDNODEBUS_EMPTY_PAYLOAD
+	bool "Packets do not carry payload from higher layers"
+	default n
+	help
+      The maximum packet size will only be that of the RedNodeBus header
+
+config REDNODEBUS_MANAGEMENT_MIN_SUPERFRAME_RETRY_COUNT
+	int "Minimum number of superframes to retry sending over management slots"
+	default 1
+	help
+      The nodes will try to send over management slots.
+
+config REDNODEBUS_MANAGEMENT_PERSISTENCY_LEVEL
+	int "Frequency to retry the management (1 is max. frequency)"
+	default 8
+	help
+      The nodes will try to send over management slots.
+
+config REDNODEBUS_MANAGEMENT_MAX_ASSOCIATION_REQUEST_RETRIES
+	int "Maximum number of assocation request retries before resynchronizing"
+	default 50
+	help
+      The nodes will send so many association requests before resynchronizing again.
+
+config REDNODEBUS_RANGING_MAX_RESPONDER_COUNT
+	int "RedNodeBus Ranging max responder count"
+	default 4
+	help
+      The max responder count is set to run the ranging.
+
+config REDNODEBUS_RANGING_MAX_REPORTER_COUNT
+	int "RedNodeBus Ranging max reporter count"
+  	default 6
+  	help
+      The max reporter count is set to run the 3w ranging.
+
+config REDNODEBUS_RANGING_DIAGNOSTIC_ENABLED
+	bool "Enable RedNodeBus Ranging diagnostic"
+  	default n
+  	help
+      Enable RedNodeBus Ranging diagnostic.
+
+config REDNODEBUS_RELEASE_STATIC_LIB
+	bool "Enable RedNodeBus zephyr static library release"
+	default y
+	help
+	  Creates the RedNodeBus zephyr static library release in
+	  a separate location than build and provides build
+	  info to integrate in zephyr projects.
+
+module = REDNODEBUS_DRIVER
+module-str = RedNodeBus driver
+module-help = Sets log level for RedNodeBus Device Drivers.
+source "subsys/logging/Kconfig.template.log_config"
+
+endif # REDNODEBUS

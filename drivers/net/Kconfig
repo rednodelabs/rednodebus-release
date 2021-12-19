@@ -1,0 +1,7 @@
+# Copyright (c) 2020 RedNodeLabs
+
+menu "RedNodeLabs Net Drivers"
+
+rsource "rednodebus/Kconfig"
+
+endmenu
