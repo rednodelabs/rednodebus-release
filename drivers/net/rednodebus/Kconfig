@@ -121,6 +121,12 @@ config REDNODEBUS_PROTOCOL_VERSION
 	help
       The version of the bus protocol. Only the 3-less significant bits are used.
 
+config REDNODEBUS_PROVISIONING_VERSION
+	int "RedNodeBus Provisioning version"
+	default 0
+	help
+      The version of the bus protocol provisioning. Only the 8-less significant bits are used.
+
 config REDNODEBUS_MODE
 	int "RedNodeBus mode"
 	default 0
@@ -151,11 +157,17 @@ config REDNODEBUS_EMPTY_PAYLOAD
 	help
       The maximum packet size will only be that of the RedNodeBus header
 
-config REDNODEBUS_MANAGEMENT_MIN_SUPERFRAME_RETRY_COUNT
-	int "Minimum number of superframes to retry sending over management slots"
-	default 1
+config REDNODEBUS_MANAGEMENT_PROVISIONING_MIN_RETRY_PERIOD_MS
+	int "Minimum ms period to retry provisioning over management slots"
+	default 4000
 	help
-      The nodes will try to send over management slots.
+      The nodes will try to provision over management slots.
+
+config REDNODEBUS_MANAGEMENT_ASSOCIATION_MIN_RETRY_PERIOD_MS
+	int "Minimum ms period to retry association over management slots"
+	default 2000
+	help
+      The nodes will try to associate over management slots.
 
 config REDNODEBUS_MANAGEMENT_PERSISTENCY_LEVEL
 	int "Frequency to retry the management (1 is max. frequency)"
@@ -163,11 +175,11 @@ config REDNODEBUS_MANAGEMENT_PERSISTENCY_LEVEL
 	help
       The nodes will try to send over management slots.
 
-config REDNODEBUS_MANAGEMENT_MAX_ASSOCIATION_REQUEST_RETRIES
-	int "Maximum number of assocation request retries before resynchronizing"
+config REDNODEBUS_MANAGEMENT_MAX_REQUEST_RETRIES
+	int "Maximum number of request retries before resynchronizing"
 	default 50
 	help
-      The nodes will send so many association requests before resynchronizing again.
+      The nodes will send so many requests before resynchronizing again.
 
 config REDNODEBUS_RANGING_MAX_RESPONDER_COUNT
 	int "RedNodeBus Ranging max responder count"
