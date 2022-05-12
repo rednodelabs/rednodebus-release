@@ -157,18 +157,6 @@ config REDNODEBUS_EMPTY_PAYLOAD
 	help
       The maximum packet size will only be that of the RedNodeBus header
 
-config REDNODEBUS_MANAGEMENT_PROVISIONING_MIN_RETRY_PERIOD_MS
-	int "Minimum ms period to retry provisioning over management slots"
-	default 4000
-	help
-      The nodes will try to provision over management slots.
-
-config REDNODEBUS_MANAGEMENT_ASSOCIATION_MIN_RETRY_PERIOD_MS
-	int "Minimum ms period to retry association over management slots"
-	default 2000
-	help
-      The nodes will try to associate over management slots.
-
 config REDNODEBUS_MANAGEMENT_PERSISTENCY_LEVEL
 	int "Frequency to retry the management (1 is max. frequency)"
 	default 8
