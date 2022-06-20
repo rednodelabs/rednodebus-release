@@ -183,7 +183,7 @@ config REDNODEBUS_RANGING_MAX_REPORTER_COUNT
 
 config REDNODEBUS_RANGING_DIAGNOSTIC_ENABLED
 	bool "Enable RedNodeBus Ranging diagnostic"
-  	default n
+	default y if OPENTHREAD_COPROCESSOR_RCP
   	help
       Enable RedNodeBus Ranging diagnostic.
 
