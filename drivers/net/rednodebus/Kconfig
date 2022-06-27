@@ -157,9 +157,9 @@ config REDNODEBUS_EMPTY_PAYLOAD
 	help
       The maximum packet size will only be that of the RedNodeBus header
 
-config REDNODEBUS_MANAGEMENT_PERSISTENCY_LEVEL
-	int "Frequency to retry the management (1 is max. frequency)"
-	default 8
+config REDNODEBUS_MANAGEMENT_MAX_PERSISTENCY_PERIOD_S
+	int "Period to retry in management slots (1s is min. period)"
+	default 5
 	help
       The nodes will try to send over management slots.
 
@@ -183,7 +183,7 @@ config REDNODEBUS_RANGING_MAX_REPORTER_COUNT
 
 config REDNODEBUS_RANGING_DIAGNOSTIC_ENABLED
 	bool "Enable RedNodeBus Ranging diagnostic"
-  	default n
+	default y if OPENTHREAD_COPROCESSOR_RCP
   	help
       Enable RedNodeBus Ranging diagnostic.
 
