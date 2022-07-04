@@ -159,13 +159,13 @@ config REDNODEBUS_EMPTY_PAYLOAD
 
 config REDNODEBUS_MANAGEMENT_MAX_PERSISTENCY_PERIOD_S
 	int "Period to retry in management slots (1s is min. period)"
-	default 5
+	default 20
 	help
       The nodes will try to send over management slots.
 
 config REDNODEBUS_MANAGEMENT_MAX_REQUEST_RETRIES
 	int "Maximum number of request retries before resynchronizing"
-	default 50
+	default 3
 	help
       The nodes will send so many requests before resynchronizing again.
 

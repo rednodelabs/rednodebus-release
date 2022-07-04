@@ -14,7 +14,7 @@ if REDNODERANGING
 
 config REDNODERANGING_RECEIVED_NODE_MAX_RETENTION_SF_COUNT
     int "Received node max retention superframe count"
-    default 2
+    default 8
     help
       Once passed the max retention superframe count, the received nodes will be
 	  evicted from the ranging cache.
