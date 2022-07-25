@@ -165,7 +165,7 @@ config REDNODEBUS_MANAGEMENT_MAX_PERSISTENCY_PERIOD_S
 
 config REDNODEBUS_MANAGEMENT_MAX_REQUEST_RETRIES
 	int "Maximum number of request retries before resynchronizing"
-	default 3
+	default 8
 	help
       The nodes will send so many requests before resynchronizing again.
 
@@ -177,7 +177,7 @@ config REDNODEBUS_RANGING_MAX_RESPONDER_COUNT
 
 config REDNODEBUS_RANGING_MAX_REPORTER_COUNT
 	int "RedNodeBus Ranging max reporter count"
-  	default 6
+	default 5
   	help
       The max reporter count is set to run the 3w ranging.
 
