@@ -39,13 +39,13 @@ config REDNODEBUS_NRF5_INIT_PRIO
 
 config NRF_REDNODEBUS_EVENT_BUFFERS
 	int "nRF RedNodeBus event buffers"
-	default 6
+	default 4
 	help
 	  Number of buffers in nRF RedNodeBus driver event queue.
 
 config NRF_REDNODEBUS_RX_BUFFERS
 	int "nRF RedNodeBus receive buffers"
-	default 4
+	default 3
 	help
 	  Number of buffers in nRF RedNodeBus driver receive queue.
 
