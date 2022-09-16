@@ -45,7 +45,7 @@ config NRF_REDNODEBUS_EVENT_BUFFERS
 
 config NRF_REDNODEBUS_RX_BUFFERS
 	int "nRF RedNodeBus receive buffers"
-	default 3
+	default 2
 	help
 	  Number of buffers in nRF RedNodeBus driver receive queue.
 

@@ -7,36 +7,47 @@
 #
 menuconfig REDNODERANGING
 	bool "RedNodeRanging Driver"
-    depends on REDNODEBUS && IEEE802154_DW1000
+	depends on REDNODEBUS && IEEE802154_DW1000
 	default y
 
 if REDNODERANGING
 
+config REDNODERANGING_2W_ENABLED
+	bool "Enable 2W ranging"
+	default y
+	help
+	  Enable 2W ranging (SS-TWR).
+
+config REDNODERANGING_3W_ENABLED
+	bool "Enable 3W ranging"
+	default y
+	help
+	  Enable 3W ranging (DS-TWR).
+
 config REDNODERANGING_RECEIVED_NODE_MAX_RETENTION_SF_COUNT
-    int "Received node max retention superframe count"
-    default 8
-    help
-      Once passed the max retention superframe count, the received nodes will be
-	  evicted from the ranging cache.
+	int "Received node max retention superframe count"
+	default 8
+	help
+	  Once passed the max retention superframe count, the received nodes will be evicted from the ranging cache.
 
 config REDNODERANGING_BIAS_CORRECTION_ENABLED
 	bool "Enable bias correction"
 	default n
 	help
-      Enable bias correction.
+	  Enable bias correction.
 
 config REDNODERANGING_CLOCK_OFFSET_CORRECTION_ENABLED
 	bool "Enable clock offset correction"
 	default y
 	help
-      Enable clock offset correction.
+	  Enable clock offset correction.
 
 config REDNODERANGING_CLOCK_OFFSET_CORRECTION_3W_ENABLED
 	bool "Enable clock offset correction in 3W"
 	depends on REDNODERANGING_CLOCK_OFFSET_CORRECTION_ENABLED
 	default n
 	help
-      Enable clock offset correction in 3W.
+	  Enable clock offset correction in 3W ranging.
 
 rsource "Kconfig.dw"
 

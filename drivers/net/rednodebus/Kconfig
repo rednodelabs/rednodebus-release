@@ -7,7 +7,7 @@
 #
 menuconfig REDNODEBUS
 	bool "RedNodeBus Driver"
-    depends on NET_L2_IEEE802154 || NET_L2_OPENTHREAD
+	depends on NET_L2_IEEE802154 || NET_L2_OPENTHREAD
 
 if REDNODEBUS
 
@@ -119,73 +119,73 @@ config REDNODEBUS_PROTOCOL_VERSION
 	int "RedNodeBus protocol version"
 	default 0
 	help
-      The version of the bus protocol. Only the 3-less significant bits are used.
+	  The version of the bus protocol. Only the 3-less significant bits are used.
 
 config REDNODEBUS_PROVISIONING_VERSION
 	int "RedNodeBus Provisioning version"
 	default 0
 	help
-      The version of the bus protocol provisioning. Only the 8-less significant bits are used.
+	  The version of the bus protocol provisioning. Only the 8-less significant bits are used.
 
 config REDNODEBUS_MODE
 	int "RedNodeBus mode"
 	default 0
 	help
-      The mode of the bus protocol. Only the 3-less significant bits are used.
+	  The mode of the bus protocol. Only the 3-less significant bits are used.
 
 config REDNODEBUS_RANGING_MAJOR_VERSION
 	int "RedNodeBus Ranging major version"
 	default 0
 	help
-      The major version of the ranging protocol. Only the 4-less significant bits are used.
+	  The major version of the ranging protocol. Only the 4-less significant bits are used.
 
 config REDNODEBUS_RANGING_MINOR_VERSION
 	int "RedNodeBus Ranging minor version"
 	default 0
 	help
-      The minor version of the ranging protocol. Only the 4-less significant bits are used.
+	  The minor version of the ranging protocol. Only the 4-less significant bits are used.
 
 config REDNODEBUS_CHANNEL_MASK_SWITCH_ORDER
 	bool "Move the order of the channels within the mask in each superframe"
 	default y
 	help
-      The order of the channels will change based on the superframe number
+	  The order of the channels will change based on the superframe number
 
 config REDNODEBUS_EMPTY_PAYLOAD
 	bool "Packets do not carry payload from higher layers"
 	default n
 	help
-      The maximum packet size will only be that of the RedNodeBus header
+	  The maximum packet size will only be that of the RedNodeBus header
 
 config REDNODEBUS_MANAGEMENT_MAX_PERSISTENCY_PERIOD_S
 	int "Period to retry in management slots (1s is min. period)"
 	default 20
 	help
-      The nodes will try to send over management slots.
+	  The nodes will try to send over management slots.
 
 config REDNODEBUS_MANAGEMENT_MAX_REQUEST_RETRIES
 	int "Maximum number of request retries before resynchronizing"
 	default 8
 	help
-      The nodes will send so many requests before resynchronizing again.
+	  The nodes will send so many requests before resynchronizing again.
 
 config REDNODEBUS_RANGING_MAX_RESPONDER_COUNT
 	int "RedNodeBus Ranging max responder count"
 	default 4
 	help
-      The max responder count is set to run the ranging.
+	  The max responder count is set to run the ranging.
 
 config REDNODEBUS_RANGING_MAX_REPORTER_COUNT
 	int "RedNodeBus Ranging max reporter count"
 	default 5
   	help
-      The max reporter count is set to run the 3w ranging.
+	  The max reporter count is set to run the 3w ranging.
 
 config REDNODEBUS_RANGING_DIAGNOSTIC_ENABLED
 	bool "Enable RedNodeBus Ranging diagnostic"
-	default y if OPENTHREAD_COPROCESSOR_RCP
-  	help
-      Enable RedNodeBus Ranging diagnostic.
+	default n
+	help
+	  Enable RedNodeBus Ranging diagnostic.
 
 config REDNODEBUS_RELEASE_STATIC_LIB
 	bool "Enable RedNodeBus zephyr static library release"
@@ -194,6 +194,13 @@ config REDNODEBUS_RELEASE_STATIC_LIB
 	  Creates the RedNodeBus zephyr static library release in
 	  a separate location than build and provides build
 	  info to integrate in zephyr projects.
+
+config REDNODEBUS_MODE_1_MASTER_IDLE
+	bool "Enable radio idle mode for master in Mode 1"
+	default y
+	help
+	  Master goes to idle instead of going to rx in bus Mode 1 Scaleup
+	  in the shared anchor slots.
 
 module = REDNODEBUS_DRIVER
 module-str = RedNodeBus driver
