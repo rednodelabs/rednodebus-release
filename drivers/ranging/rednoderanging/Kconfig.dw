@@ -16,7 +16,7 @@ config REDNODERANGING_DW_DRV_NAME
 
 config REDNODERANGING_DW_EVENT_STACK_SIZE
 	int "Driver's internal RedNodeRanging Event thread stack size"
-	default 800
+	default 1000
 	help
 	  This option sets the driver's stack size for its internal Radio Event thread.
 	  The default value should be sufficient, but in case it proves to be
