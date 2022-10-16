@@ -123,7 +123,7 @@ config REDNODEBUS_PROTOCOL_VERSION
 
 config REDNODEBUS_PROVISIONING_VERSION
 	int "RedNodeBus Provisioning version"
-	default 0
+	default 1
 	help
 	  The version of the bus protocol provisioning. Only the 8-less significant bits are used.
 
@@ -176,6 +176,12 @@ config REDNODEBUS_PREDETERMINED_SCALEUP_MODE_SLOT
 	  The anchors will send in a predetermined slot according to their associated slot,
 	  instead of selecting a random slot in each superframe during scaleup mode.
 
+config REDNODEBUS_RANGING_DIAGNOSTIC_ENABLED
+	bool "Enable RedNodeBus Ranging diagnostic"
+	default n
+	help
+	  Enable RedNodeBus Ranging diagnostic.
+
 config REDNODEBUS_RANGING_MAX_RESPONDER_COUNT
 	int "RedNodeBus Ranging max responder count"
 	default 4
@@ -184,15 +190,10 @@ config REDNODEBUS_RANGING_MAX_RESPONDER_COUNT
 
 config REDNODEBUS_RANGING_MAX_REPORTER_COUNT
 	int "RedNodeBus Ranging max reporter count"
-	default 5
+	default 5 if !REDNODEBUS_RANGING_DIAGNOSTIC_ENABLED
+	default 4 if REDNODEBUS_RANGING_DIAGNOSTIC_ENABLED
   	help
 	  The max reporter count is set to run the 3w ranging.
-
-config REDNODEBUS_RANGING_DIAGNOSTIC_ENABLED
-	bool "Enable RedNodeBus Ranging diagnostic"
-	default n
-	help
-	  Enable RedNodeBus Ranging diagnostic.
 
 config REDNODEBUS_RELEASE_STATIC_LIB
 	bool "Enable RedNodeBus zephyr static library release"

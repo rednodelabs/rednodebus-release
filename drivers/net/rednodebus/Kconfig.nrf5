@@ -24,7 +24,7 @@ config REDNODEBUS_NRF5_RX_STACK_SIZE
 
 config REDNODEBUS_NRF5_REDNODEBUS_EVENT_STACK_SIZE
 	int "Driver's internal RedNodeBus Event thread stack size"
-	default 1800
+	default 800
 	help
 	  This option sets the driver's stack size for its internal Radio Event thread.
 	  The default value should be sufficient, but in case it proves to be
