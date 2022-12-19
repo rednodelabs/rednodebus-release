@@ -3,13 +3,13 @@
 # Copyright (c) 2020 RedNodeLabs
 
 menuconfig REDNODERANGING_DW
-	bool "Decawave RedNodeRanging Radio Driver"
-	default y if IEEE802154_DW1000 && REDNODERANGING
+	bool "RedNodeRanging Radio Driver"
+	default y if (IEEE802154_DW1000 || IEEE802154_DW3000) && REDNODERANGING
 
 if REDNODERANGING_DW
 
 config REDNODERANGING_DW_DRV_NAME
-	string "Decawave RedNodeRanging Radio Driver's name"
+	string "RedNodeRanging Radio Driver's name"
 	default "REDNODERANGING_dw"
 	help
 	  This option sets the driver name
@@ -23,7 +23,7 @@ config REDNODERANGING_DW_EVENT_STACK_SIZE
 	  a too little one, this option makes it easy to play with the size.
 
 config REDNODERANGING_DW_INIT_PRIO
-	int "Decawave RedNodeRanging initialization priority"
+	int "RedNodeRanging initialization priority"
 	default 75
 	help
 	  Set the initialization priority number. Do not mess with it unless
