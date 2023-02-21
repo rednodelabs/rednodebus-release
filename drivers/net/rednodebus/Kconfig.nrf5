@@ -14,6 +14,13 @@ config IEEE802154_NRF5_DRV_NAME
 	help
 	  This option sets the driver name
 
+config NET_CONFIG_IEEE802154_DEV_NAME
+	default IEEE802154_NRF5_DRV_NAME
+
+config REDNODEBUS_WATCHDOG
+	bool "Enable RedNodeBus internal control of a watchdog channel"
+	depends on WATCHDOG
+
 config REDNODEBUS_NRF5_RX_STACK_SIZE
 	int "Driver's internal RX thread stack size"
 	default 800

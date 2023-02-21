@@ -22,7 +22,13 @@ if(DEFINED CONFIG_REDNODEBUS)
     set(lib_rnb_rnr_suffix "")
   endif()
 
-  set(lib_rnb "lib_rnb${lib_rnb_rnr_suffix}${lib_rnb_rangingdiag_suffix}_${BOARD}")
+  if(DEFINED CONFIG_LOG)
+    set(lib_rnb_debug_suffix "_debug")
+  else()
+    set(lib_rnb_debug_suffix "")
+  endif()
+
+  set(lib_rnb "lib_rnb_${CONFIG_SOC}${lib_rnb_rnr_suffix}${lib_rnb_rangingdiag_suffix}${lib_rnb_debug_suffix}")
 
   zephyr_library_import(${lib_rnb} "${REDNODEBUS_RELEASE_DIR}/${lib_rnb}.a")
 
