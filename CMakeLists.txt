@@ -4,6 +4,18 @@ if(DEFINED CONFIG_REDNODEBUS)
 
   set(REDNODEBUS_RELEASE_DIR "${CMAKE_CURRENT_LIST_DIR}/lib_rnb" CACHE PATH "RedNodeBus release root directory")
 
+  if(DEFINED CONFIG_REDNODEBUS_MASTER_LIB_ENABLED)
+    set(lib_rnb_master_suffix "_ms")
+  else()
+    set(lib_rnb_master_suffix "")
+  endif()
+
+  if(DEFINED CONFIG_REDNODEBUS_WATCHDOG)
+    set(lib_rnb_wdt_suffix "_wdt")
+  else()
+    set(lib_rnb_wdt_suffix "")
+  endif()
+
   if(DEFINED CONFIG_REDNODEBUS_RANGING_DIAGNOSTIC_ENABLED)
     set(lib_rnb_rangingdiag_suffix "_rangingdiag")
   else()
@@ -28,7 +40,7 @@ if(DEFINED CONFIG_REDNODEBUS)
     set(lib_rnb_debug_suffix "")
   endif()
 
-  set(lib_rnb "lib_rnb_${CONFIG_SOC}${lib_rnb_rnr_suffix}${lib_rnb_rangingdiag_suffix}${lib_rnb_debug_suffix}")
+  set(lib_rnb "lib_rnb_${CONFIG_SOC}${lib_rnb_master_suffix}${lib_rnb_wdt_suffix}${lib_rnb_rnr_suffix}${lib_rnb_rangingdiag_suffix}${lib_rnb_debug_suffix}")
 
   zephyr_library_import(${lib_rnb} "${REDNODEBUS_RELEASE_DIR}/${lib_rnb}.a")
 

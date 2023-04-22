@@ -19,7 +19,13 @@ config NET_CONFIG_IEEE802154_DEV_NAME
 
 config REDNODEBUS_WATCHDOG
 	bool "Enable RedNodeBus internal control of a watchdog channel"
-	depends on WATCHDOG
+	default n
+	select WATCHDOG
+
+config REDNODEBUS_WATCHDOG_PERIOD
+	int "RedNodeBus wathdog period"
+	depends on REDNODEBUS_WATCHDOG
+	default 45000
 
 config REDNODEBUS_NRF5_RX_STACK_SIZE
 	int "Driver's internal RX thread stack size"

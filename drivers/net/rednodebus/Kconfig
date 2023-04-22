@@ -127,6 +127,12 @@ config REDNODEBUS_PROVISIONING_VERSION
 	help
 	  The version of the bus protocol provisioning. Only the 8-less significant bits are used.
 
+config REDNODEBUS_MASTER_LIB_ENABLED
+	bool "RedNodeBus master library enabled"
+	default y if OPENTHREAD_COPROCESSOR
+	help
+	  It indicates whether the RedNodeBus library is compiled for master role.
+
 config REDNODEBUS_MODE
 	int "RedNodeBus mode"
 	default 0
