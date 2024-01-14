@@ -177,7 +177,7 @@ config REDNODEBUS_MANAGEMENT_MAX_REQUEST_RETRIES
 
 config REDNODEBUS_PREDETERMINED_SCALEUP_MODE_SLOT
 	bool "Predetermined slot for anchors in scaleup mode according to associated slot"
-	default true
+	default y
 	help
 	  The anchors will send in a predetermined slot according to their associated slot,
 	  instead of selecting a random slot in each superframe during scaleup mode.
