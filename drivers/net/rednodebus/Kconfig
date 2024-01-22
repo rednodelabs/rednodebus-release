@@ -216,6 +216,12 @@ config REDNODEBUS_MODE_1_MASTER_IDLE
 	  Master goes to idle instead of going to rx in bus Mode 1 Scaleup
 	  in the shared anchor slots.
 
+config REDNODEBUS_MASTER_IDLE
+	bool "Enable radio idle mode for master"
+	default n
+	help
+	  Master does not retransmit packets in other slots
+
 module = REDNODEBUS_DRIVER
 module-str = RedNodeBus driver
 module-help = Sets log level for RedNodeBus Device Drivers.
